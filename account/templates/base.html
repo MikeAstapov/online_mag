@@ -28,7 +28,17 @@ Hello {{ request.user.first_name }},
 {% else %}
 <a href="{% url 'login' %}">Авторизоваться</a>
 {% endif %}
-</span>
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<li class="{{ message.tags }}">
+{{ message|safe }}
+<a href="#" class="close">x</a>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
 </div>
 <div id="content">
 {% block content %}{% endblock %}
